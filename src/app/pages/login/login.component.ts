@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
+import { userService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,16 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder, 
-    private service: LoginService) {}
+    private router: Router,
+    private service: userService) {}
+
+    error:boolean = false;
+    errorMsj:string = "";
+
+    show = true;
+    passwordType= "password"
 
     usuario = {
-      tenant: 2,
       email: "",
       password: ""
     }
@@ -29,13 +36,38 @@ export class LoginComponent implements OnInit {
   }
 
   async submitForm(){
-    console.log(this.email," ",this.password)
-    this.usuario.tenant = 2
+    //console.log(this.email," ",this.password)
     this.usuario.email = this.email
     this.usuario.password = this.password
-    console.log(this.usuario)
-    console.log(await this.service.userLogin(this.usuario));
+    const result = (await this.service.userLogin(this.usuario));
+    if(result == 0){
+      this.router.navigate(['/home'])
+    }
+    else if(result == 2)
+    {
+      this.error = true;
+      this.errorMsj = "Usuario bloqueado, contacte al administrador";
+    }
+    else
+    {
+      this.error = true;
+      this.errorMsj = "El usuario o contraseña son inválidos";
+    }
       
+  }
+
+  hideEye(){ 
+    if (!this.show) 
+    {
+      this.show = true
+      this.passwordType = 'text'
+    }
+    else
+    {
+      this.show = false;
+      this.passwordType = 'password'
+    }
+
   }
 
   get email(){
