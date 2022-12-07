@@ -1,0 +1,50 @@
+<div class="text-center">
+    
+    <div class="container w-50 pt-5 m-auto">
+      <form [formGroup]="loginForm">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Inicio de Sesión</h1>
+    
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#"></a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+          </div>
+        <div class="form-floating">
+          <input
+          name="email"
+          formControlName="email"
+          type="email"
+          class="form-control mt-5" 
+          placeholder="name@example.com">
+          <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mt-5">
+          <input 
+          formControlName="password"
+          type="password" 
+          class="form-control" 
+          placeholder="Password">
+          <label for="floatingPassword">Password</label>
+        </div>
+    
+        <div class="checkbox mt-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Recordarme
+          </label>
+        </div>
+        <button 
+        class="w-50 btn btn-lg btn-primary mt-3" 
+        type="button"
+        (click)="submitForm()"
+        >Iniciar sesión</button>
+        <p class="mt-5 mb-3 text-muted">2017–2022</p>
+      </form>
+    </div>
+        
+</div>
