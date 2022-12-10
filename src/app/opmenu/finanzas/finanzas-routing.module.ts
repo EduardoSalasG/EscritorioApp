@@ -4,6 +4,7 @@ import { ContabilidadComponent } from './contabilidad/contabilidad.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { FacturacionComponent } from './facturacion/facturacion.component';
 import { FinanzasHomeComponent } from './finanzas-home/finanzas-home.component';
+import { GastosComponent } from './gastos/gastos.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'documentos',
     component: DocumentosComponent  
+  },
+  {
+    path: 'gastos',
+    component: GastosComponent  
   },
 ]
 
