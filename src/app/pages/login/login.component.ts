@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     const result:any = (await this.service.userLogin(this.usuario));
     if(result.Code == 0){
       console.log(result)
-      localStorage.setItem('token',result.token)
       this.router.navigate(['/home'])
     }
     else if(result.Code == 2)

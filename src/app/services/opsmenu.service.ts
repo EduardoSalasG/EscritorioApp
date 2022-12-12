@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { getRol, loadModulo, loadModuloRes, opMenuItemsRes, usuarioOpMenu } from '../interfaces/interfaces';
+import { getRol, loadModulo, loadModuloRes, opMenuItemsRes, userDecoded, usuarioOpMenu } from '../interfaces/interfaces';
 import {userService} from "./user.service"
 
 @Injectable({
@@ -8,6 +8,11 @@ import {userService} from "./user.service"
 })
 export class OpsmenuService {
 
+  rol: any = localStorage.getItem('rol_Id')
+  rol_Id = parseInt(this.rol)
+  user_Email = localStorage.getItem('user_Email');
+  tenant: any = localStorage.getItem('tenant_Id');
+  tenant_Id = parseInt(this.tenant);
   constructor(
     private http: HttpClient,
     private service: userService) { }
@@ -34,31 +39,42 @@ export class OpsmenuService {
     })
   }
 
+
   async loadModulo(){
     const rol : any[] = []
-    const resultado = await this.service.getRol().then(result => {
-      rol.push(result)
-      console.log(result);
-      console.log(rol[0].id_Rol)
+    const resultadoModulos = await this.loadModulo1(this.rol_Id).then(result =>{
+      console.log(result)
     })
-    console.log(rol)
-    console.log(rol[0].id_Rol)
-
-    new Promise (resolve=>{
-      this.http.post<loadModuloRes>("http://localhost:3000/consulta-modulo-por-rol", rol[0].id_Rol)
-      .subscribe(resp=>{
-      const halfclean = (resp.map(({ id_Modulo, nombre_Modulo}) => 
-      ({ id_Modulo : id_Modulo,
-        menuName: nombre_Modulo, 
-        subMenus: [] }))
-        );
-        console.log(halfclean)
-        resolve(halfclean); 
-      }); 
-      })
   
     }
+
+
+
+    async loadModulo1(rol:any){
+      console.log(rol)
+      return new Promise (resolve=>{
+        this.http.post<loadModuloRes>("http://localhost:3000/consulta-modulo-por-rol", rol)
+        .subscribe(resp=>{
+          console.log(resp);
+        const halfclean = (resp.map(({ id_Modulo, nombre_Modulo}) => 
+        ({ id_Modulo : id_Modulo,
+          menuName: nombre_Modulo, 
+          subMenus: [] }))
+          );
+          console.log(halfclean)
+          resolve(halfclean); 
+        }); 
+        
+        })
+    }
+
   }
+
+  
+
+
+
+
 
 
   

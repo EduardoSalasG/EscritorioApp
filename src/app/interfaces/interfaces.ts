@@ -7,7 +7,15 @@ export interface loginResponse {
         id_Usuario: number,
         nombre_Rol: string,
         nombre_Tenant: string,
-        nombre_Usuario: string
+        nombre_Usuario: string,
+        token: string
+}
+
+export interface loginResponse1{
+        Code: number,
+        Response: string,
+        token: string,
+
 }
 
 export interface usuarioLogin {
@@ -50,8 +58,46 @@ export interface getRol
 
 export interface loadModulo
 {
-        id_Modulo: string,
+        id_Modulo: number,
         nombre_Modulo: string
 }
 
 export interface loadModuloRes extends Array<loadModulo>{} 
+
+export interface loadMenu
+{
+        id_OpMenu: number,
+        nombre_OpMenu: string,
+        url_OpMenu: string,
+        id_Modulo: number,
+}
+
+export interface loadMenuRes extends Array<loadMenu>{} 
+
+
+export interface userDecoded 
+{  
+        id_Usuario: number,
+        nombre_Usuario: string,
+        id_Tenant: number,
+        nombre_Tenant: string,
+        id_Rol: number,
+        nombre_Rol: string
+}
+
+export interface modulov1
+{
+        id_Modulo: number,
+        nombre_Modulo: string,
+        submenus : menu1[]
+}
+
+export interface modulosv1 extends Array<modulov1>{} 
+
+export interface menu1
+{
+        id_OpMenu: number,
+        nombre_OpMenu: string,
+        url_OpMenu: string,
+        id_Modulo: number,
+}

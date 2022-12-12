@@ -15,12 +15,11 @@
             <div class="dropdown-menu" id="menu2-collapse">
               <ul class="btn-toggle-nav list-unstyled pb-1">
                 <li><div class="text-center mt-1 mb-2">
-                <a  class="link-dark d-inline-flex text-decoration-none rounded font-weight-bold">Eduardo Salas</a>
-                <a  class="link-dark d-inline-flex text-decoration-none rounded small font-weight-light">Administrador</a>
+                <a  class="link-dark d-inline-flex text-decoration-none rounded font-weight-bold">{{this.loggedUser.nombre_Usuario}}</a>
+                <a  class="link-dark d-inline-flex text-decoration-none rounded small font-weight-light">{{this.loggedUser.nombre_Rol}}</a>
                 <hr>
               </div></li>
                 <li><div ><a  href="" class="link-dark d-inline-flex text-decoration-none rounded">Cambiar password</a></div></li>
-                <li><div><a  href="" class="link-dark d-inline-flex text-decoration-none rounded" (click)="5">Cerrar sesión</a></div></li>
               </ul>
             </div>
           </li>

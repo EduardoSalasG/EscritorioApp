@@ -4,13 +4,13 @@
       <span class="fs-5 fw-semibold">Módulos</span>
     </a>
     <ul class="list-unstyled ps-0">
-      <li *ngFor=" let item of menuOp" class="mb-1">
+      <li *ngFor=" let modulo of this.userService.modulos; let index as i" class="mb-1">
         <button class="btn dropdown-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#menu1-collapse" aria-expanded="false">
-          {{item.menuName}}
+          {{modulo.menuName}}
         </button>
         <div class="collapse" id="menu1-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li *ngFor="let subMenu of item.subMenus"><a routerLink="/{{subMenu.url}}" class="link-dark d-inline-flex text-decoration-none">{{subMenu.name}}</a></li>
+          <ul *ngFor="let menu of this.userService.menus" class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li *ngIf="menu.id_Modulo == modulo.id_Modulo"><a routerLink="/{{menu.url_OpMenu}}" class="link-dark d-inline-flex text-decoration-none">{{menu.nombre_OpMenu}}</a></li>
           </ul>
         </div>
       </li>
