@@ -1,0 +1,37 @@
+<div class="div-content">
+    <main>
+        <section class="text-center container">
+          <div class="row py-lg-3">
+            <div class="mx-auto">
+              <h1 class="fw-light">Cambiar rol</h1>
+            </div>
+          </div>
+        </section>
+        <div class="container w-100 pt-5 m-auto">
+            <form [formGroup]="cambiarRolForm">    
+                <select class="custom-select d-block w-100" 
+                    name="rol"
+                    formControlName="rol"
+                    required="">
+                    <option *ngFor="let rol of this.rolService.roles" value={{rol.id_Rol}}>{{rol.nombre_Rol}}</option>
+                  </select>          
+              <div class="col text-center">
+              <button 
+              class="w-50 btn btn-lg btn-primary mt-3" 
+              type="button"
+              (click)="submitForm()"
+              >Guardar</button>
+              </div>
+              <div class="col text-center mt-3">
+                <span *ngIf="cambiosguardados" class="text-success mt-5">
+                  {{msj}}
+                </span>  
+              </div>
+      
+            </form>
+          </div>
+              
+    </main>
+    </div>
+
+    

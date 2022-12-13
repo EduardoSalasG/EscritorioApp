@@ -1,0 +1,26 @@
+<div class="">
+    <div class="mx-auto">
+        <h1 class="fw-light">Actualizar menú de opciones del rol</h1>
+      </div>
+    <div class="col text-center mt-3" >
+        <select [formGroup]="updateOpsmenuForm" name="opsMenu" multiple>
+            <optgroup *ngFor="let module of this.rolService.allModules" label={{module.nombre_Modulo}}>
+                <ng-container *ngFor="let opMenu of this.rolService.allOpsmenu">
+                    <option *ngIf="opMenu.id_Modulo == module.id_Modulo" value={{opMenu.id_OpMenu}}>{{opMenu.nombre_OpMenu}}</option>
+                </ng-container>
+            </optgroup>
+          </select>
+          <div class="col text-center">
+            <button 
+            class="w-50 btn btn-lg btn-primary mt-3" 
+            type="button"
+            (click)="submitForm()"
+            >Guardar</button>
+            </div>
+            <div class="col text-center mt-3">
+              <span *ngIf="cambiosguardados" class="text-success mt-5">
+                {{msj}}
+              </span>  
+            </div>
+    </div>
+</div>
