@@ -4,6 +4,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import {AuthGuard} from './guards/auth.guard'
+import { CambiarRolComponent } from './pages/cambiar-rol/cambiar-rol.component';
+import { CambiarOpMenuComponent } from './pages/cambiar-op-menu/cambiar-op-menu.component';
 
 const routes: Routes = [
   {
@@ -28,6 +30,16 @@ const routes: Routes = [
   {
     path: 'finanzas',
     loadChildren: ()=>import('./opmenu/finanzas/finanzas-routing.module').then(mod=>mod.FinanzasRoutingModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cambiar-rol',
+    component: CambiarRolComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'cambiar-opciones-de-menu',
+    component: CambiarOpMenuComponent,
     canActivate: [AuthGuard]
   },
   {

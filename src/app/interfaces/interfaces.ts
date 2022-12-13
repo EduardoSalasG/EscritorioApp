@@ -101,3 +101,16 @@ export interface menu1
         url_OpMenu: string,
         id_Modulo: number,
 }
+
+export interface getRolesByTenantRes extends Array<getRolesByTenant>{}
+
+export interface getRolesByTenant
+{
+        id_Rol: number,
+        nombre_Rol: string
+}
+
+export interface updateRolByIdUsuario 
+{
+        status: string
+}
